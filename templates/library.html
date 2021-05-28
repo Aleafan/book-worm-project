@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Library
+{% endblock %}
+
+{% block main %}
+<h1 class="h5">Your Library:</h1>
+
+{% if books %}
+<div class="border-top border-dark pt-3" id="grid-container">
+  {% for book in books %}
+  <a class="card" href="/library/book?title={{ book['title'] }}">
+    <div class="image">
+
+      <img  class="card-img-top" alt="Cover image of {{ book['title'] }}"
+      {% if book['cover'] %}
+          src="{{ book['cover'] }}"
+      {% else %}
+          src="/static/images/default.jpg"
+      {% endif %}>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ book['title'] }}</h5>
+      <p class="card-text">{{ book['author'] }}</p>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+{% else %}
+  <a class="btn btn-index mt-3" href='/addbook'>Start to add books to your Library</a>
+{% endif %}
+
+</div>
+
+{% endblock %}

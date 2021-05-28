@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Bookworm
+{% endblock %}
+
+{% block main %}
+
+<h1 class="h3"><em>Hello, {{ username }}!</em></h1>
+
+{% if book %}
+<section class="border-top border-secondary py-3" id="book-recomendation">
+    <p><em>Thinking what to read next? Here's an idea:</em></p>
+    <p class="h3"><cite>{{ book['title'] }}</cite> by {{ book['author'] }}</p>
+    <a class="btn btn-index mt-3" href='/reading-list'>Find more books in your Reading List</a>
+</section>
+{% else %}
+<section class="border-top border-secondary py-3" id="book-recomendation">
+    <p><em>Thinking what to read next?</em></p>
+    <a class="btn btn-index mt-3" href='/reading-list'>Start to fill your Reading List</a>
+</section>
+{% endif %}
+
+<section class="border-top border-secondary py-3" id="library-search">
+
+    <form class="text-center" action="/" method="post" autocomplete="off">
+        <label class="form-label" for="query"><em>Search books in your Library:</em></label>
+        <div class="input-group mb-3">
+            <button class="btn btn-outline-secondary" type="submit" id="search-btn"><i class="fas fa-search"></i></button>
+            <input type="text" name="query" id="query" class="form-control" value="{{ query }}" placeholder="Book's title or author">
+        </div>
+    </form>
+
+    {% if search %}
+    <div class=" py-2 mt-3" id="search-results">
+        {% endif %}
+        <div class="mx-0" id="grid-container">
+            {% for item in search %}
+            <a class="card" href="/library/book?title={{ item['title'] }}">
+                <div class="image">
+                  <img  class="card-img-top" alt="Cover image of {{ item['title'] }}"
+                  {% if item['cover'] %}
+                      src="{{ item['cover'] }}"
+                  {% else %}
+                      src="/static/images/default.jpg"
+                  {% endif %}>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ item['title'] }}</h5>
+                  <p class="card-text">{{ item['author'] }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <a class="btn btn-index mt-2" href='/library'>Browse all books in your Library</a>
+</section>
+
+
+{% endblock %}

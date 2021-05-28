@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit book
+{% endblock %}
+
+{% block main %}
+
+<h1 class="h5">Edit book's data:</h1>
+
+<form class="pt-3" id="addbook-form" style="border-top: 1px solid;" action="/library/edit?{{ book['title'] }}" method="post" autocomplete="off">
+
+    <label class="form-label" for="title">Book's title:</label>
+    <input class="form-control mb-3" type="text" name="title" id="title" placeholder="Required field" autofocus required value="{{ book['title'] }}">
+
+    <label class="form-label" for="author">Author:</label>
+    <input class="form-control mb-3" type="text" name="author" id="author" placeholder="Required field" required value="{{ book['author'] }}">
+
+    <label class="form-label" for="date">When the book was finished:</label>
+    <input class="form-control mb-3" type="text" name="date" id="date" value="{{ book['date'] }}">
+
+    <label class="form-label" for="description">Book's description:</label>
+    <textarea class="form-control mb-3" id="description" name="description" rows="4">{{ book['description'] }}</textarea>
+
+    <label class="form-label" for="ideas">Key ideas, reflections:</label>
+    <textarea class="form-control mb-3" id="ideas" name="ideas" rows="4">{{ book['ideas'] }}</textarea>
+
+    <label class="form-label" for="quotes">Favorite quotes:</label>
+    <textarea class="form-control mb-3" id="quotes" name="quotes" rows="4">{{ book['quotes'] }}</textarea>
+
+    <label class="form-label" for="cover">Book cover pic URL:</label>
+    <input class="form-control mb-3" type="url" name="cover" id="cover" placeholder="https://example.com/book_cover.jpg" pattern="https://.*" value="{{ book['cover'] }}">
+
+    <input type="hidden" name="title-old" value="{{ book['title'] }}">
+
+    <button class="btn btn-primary" type="submit">Save</button>
+
+</form>
+
+{% endblock %}

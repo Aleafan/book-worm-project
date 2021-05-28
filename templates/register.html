@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+<h1 class="h3 py-2">Please fill the registration form:</h1>
+
+<form action="/register" method="post" autocomplete="off">
+
+    <label class="form-label" for="name">Username:</label>
+    <input class="form-control mb-3" type="text" id="name" name="name" required autofocus>
+
+    <label class="form-label" for="password">Password (8 characters minimum):</label>
+    <input class="form-control mb-3" id="password" type=password name="password" minlength="8" required>
+
+    <label class="form-label" for="confirmation">Confirm password:</label>
+    <input class="form-control mb-3" id="confirmation" type=password name="confirmation" minlength="8" required>
+
+    <button class="btn btn-primary" type="submit">Register</button>
+
+</form>
+
+{% endblock %}

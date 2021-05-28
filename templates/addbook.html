@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add book
+{% endblock %}
+
+{% block main %}
+
+<h1 class="h5">Add the book to your library:</h1>
+
+<form class="pt-3 border-top border-dark" id="addbook-form" action="/addbook" method="post" autocomplete="off">
+
+    <label class="form-label" for="title">Book's title:</label>
+    <input class="form-control mb-3" type="text" name="title" id="title" placeholder="Required field" autofocus required>
+
+    <label class="form-label" for="author">Author:</label>
+    <input class="form-control mb-3" type="text" name="author" id="author" placeholder="Required field" required>
+
+    <label class="form-label" for="date">When the book was finished:</label>
+    <input class="form-control mb-3" type="text" name="date" id="date">
+
+    <label class="form-label" for="description">Book's description:</label>
+    <textarea class="form-control mb-3" id="description" name="description" rows="4"></textarea>
+
+    <label class="form-label" for="ideas">Key ideas, reflections:</label>
+    <textarea class="form-control mb-3" id="ideas" name="ideas" rows="4"></textarea>
+
+    <label class="form-label" for="quotes">Favorite quotes:</label>
+    <textarea class="form-control mb-3" id="quotes" name="quotes" rows="4"></textarea>
+
+    <label class="form-label" for="cover">Book cover pic URL:</label>
+    <input class="form-control mb-3" type="url" name="cover" id="cover" placeholder="https://example.com/book_cover.jpg" pattern="https://.*">
+
+    <button class="btn btn-index mx-auto mt-4 mb-2" type="submit">Save to Library</button>
+
+</form>
+
+{% endblock %}

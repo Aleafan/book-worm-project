@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reading list
+{% endblock %}
+
+{% block main %}
+<h1 class="h5">What to read next?</h1>
+
+<div class="border-top border-dark pt-3" id="read-list-div">
+
+<form action="/reading-list" method="post" autocomplete="off" id="read-list-form"></form>
+
+<table class="table">
+  <thead class="reading-table">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr data-title='{{ book['title'] }}'>
+      <td><cite>{{ book['title'] }}</cite></td>
+      <td>{{ book['author'] }}</td>
+      <td><button class="btn btn-delete text-secondary px-0 py-0 fs-4 lh-1" type="button" data-title='{{ book['title'] }}'><i class="fas fa-window-close"></i></button></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>
+        <label class="visually-hidden" for="title">Title:</label>
+        <input class="form-control py-0 my-1" type="text" form="read-list-form" name="title" id="title" required>
+      </td>
+      <td>
+        <label class="visually-hidden" for="author">Author:</label>
+        <input class="form-control py-0 my-1" type="text" form="read-list-form" name="author" id="author" required>
+      </td>
+      <td><button class="btn btn-index mx-auto px-1 py-0" type="submit" form="read-list-form">Add</button></td>
+    </tr>
+  </tfoot>
+</table>
+
+</div>
+
+
+<script>
+  function removeRow() {
+    if (window.confirm("Do you really want to delete this book from the list?")) {
+      let title = this.getAttribute('data-title');
+      $.get(`/reading-list/delete?title=${title}`, (result) => {
+        if (result != 'true') {
+          return alert('Operation failed. Please try again.')
+        }
+        let row = document.querySelector(`tr[data-title='${title}']`);
+        let tbody = document.querySelector('tbody');
+        tbody.removeChild(row);
+      })
+    }
+  }
+
+  const buttons = document.querySelectorAll('.btn-delete');
+  buttons.forEach(button => button.addEventListener('click', removeRow));
+</script>
+
+{% endblock %}
