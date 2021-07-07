@@ -1,5 +1,7 @@
 # BookWorm web app
 
+#### Live demo: http://book-worm-project.herokuapp.com/
+
 #### Video Demo: https://youtu.be/2dPtx8HbnQs
 
 #### Introduction
