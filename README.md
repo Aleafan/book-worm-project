@@ -1,5 +1,7 @@
 # BookWorm web app
 
+![book-worm](https://user-images.githubusercontent.com/76619902/133414707-4aef0cee-8804-4336-82b3-7664b9aa7dc3.png)
+
 #### Live demo: http://book-worm-project.herokuapp.com/
 
 #### Video Demo: https://youtu.be/2dPtx8HbnQs
